@@ -14,6 +14,31 @@ public:
         }
     }
 
+    int sequentialSearch(Item data){
+        for(int i = 0; i < sz; i++){
+            if(elements[i] == data){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    int binarySearch(Item data){
+        int first = 0, last = sz - 1, mid;
+        while(first <= last){
+            mid =(first + last) / 2;
+            if(elements[mid] == data){
+                return mid;
+            }else if (elements[mid] > data){
+                last = mid - 1;
+            }else{
+                first = mid + 1;
+            }
+        }
+
+        return -1;
+    }
     // Required to support range-based for loop
     Item* begin(){ return elements; }
     Item* end(){ return elements + sz; }
@@ -41,6 +66,8 @@ public:
        elements = newElements;
        sz = c.sz;
        capacity = c.capacity;
+
+       return *this;
     }
 
     Item operator[](int i) const{

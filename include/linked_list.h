@@ -35,6 +35,7 @@ public:
     virtual void add(T info) = 0;
     virtual void remove(T info) = 0;
     virtual void print() = 0;
+    virtual LinkedListIterator<T> sequentualSearch(T) = 0;
     virtual LinkedListIterator<T> begin() = 0;
     virtual LinkedListIterator<T> end() = 0;
     virtual ~LinkedListADT() {}
@@ -62,6 +63,19 @@ public:
         return *this;
     }
 
+    LinkedListIterator<T> sequentualSearch(T data){
+        auto current = first;
+        while(current){
+            if(current->info == data){
+                return LinkedListIterator<T>(current);
+            }
+
+            current = current->link;
+        }
+
+        return end();
+    }
+    
     void add(T info){
         Node<T>* newNode = new Node<T>(info);
         if(first == nullptr){ // empty list

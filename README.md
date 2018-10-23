@@ -1,1 +1,1 @@
-A C++ starter project using CMake
+A C++ starter project searching and hashing.
